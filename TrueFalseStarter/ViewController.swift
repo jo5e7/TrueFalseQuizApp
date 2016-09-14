@@ -20,19 +20,28 @@ class ViewController: UIViewController {
     var gameSound: SystemSoundID = 0
 
     
-    let triviaModel = TriviaModel()
+    var trivia = TriviaModel().trivia
+    
     
     @IBOutlet weak var questionField: UILabel!
     @IBOutlet weak var firstAswer: UIButton!
     @IBOutlet weak var secondAswer: UIButton!
     @IBOutlet weak var thirdAnswer: UIButton!
     @IBOutlet weak var fourthAnswer: UIButton!
-    @IBOutlet weak var playAgainButton: UIButton!
+    @IBOutlet weak var nextButton: UIButton!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         loadGameStartSound()
+        
+        //Make buttons corners rounded
+        firstAswer.layer.cornerRadius = 10
+        secondAswer.layer.cornerRadius = 10
+        thirdAnswer.layer.cornerRadius = 10
+        fourthAnswer.layer.cornerRadius = 10
+        nextButton.layer.cornerRadius = 10
+        
         // Start game
         playGameStartSound()
         displayQuestion()
@@ -44,10 +53,10 @@ class ViewController: UIViewController {
     }
     
     func displayQuestion() {
-        indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextIntWithUpperBound(triviaModel.trivia.count)
-        let questionDictionary = triviaModel.trivia[indexOfSelectedQuestion]
+        indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextIntWithUpperBound(trivia.count)
+        let questionDictionary = trivia[indexOfSelectedQuestion]
         questionField.text = questionDictionary["Question"]
-        playAgainButton.hidden = true
+        nextButton.hidden = true
         
         //Displays Answer
         if questionDictionary["Option1"] != nil && questionDictionary["Option2"] != nil {
@@ -80,7 +89,7 @@ class ViewController: UIViewController {
         fourthAnswer.hidden = true
         
         // Display play again button
-        playAgainButton.hidden = false
+        nextButton.hidden = false
         
         questionField.text = "Way to go!\nYou got \(correctQuestions) out of \(questionsPerRound) correct!"
         
@@ -90,7 +99,7 @@ class ViewController: UIViewController {
         // Increment the questions asked counter
         questionsAsked += 1
         
-        let selectedQuestionDict = triviaModel.trivia[indexOfSelectedQuestion]
+        let selectedQuestionDict = trivia[indexOfSelectedQuestion]
         let correctAnswer = selectedQuestionDict["Answer"]
         
         if (sender.titleLabel?.text == correctAnswer) {
@@ -100,26 +109,68 @@ class ViewController: UIViewController {
             questionField.text = "Sorry, wrong answer!"
         }
         
-        loadNextRoundWithDelay(seconds: 2)
+        
+        //Display correct answer with colors
+        firstAswer.tintColor = UIColor.redColor()
+        secondAswer.tintColor = UIColor.redColor()
+        thirdAnswer.tintColor = UIColor.redColor()
+        fourthAnswer.tintColor = UIColor.redColor()
+        
+        if firstAswer.titleLabel?.text == correctAnswer {
+            firstAswer.tintColor = UIColor.greenColor()
+        }else{
+            if secondAswer.titleLabel?.text == correctAnswer {
+                secondAswer.tintColor = UIColor.greenColor()
+            }else{
+                if thirdAnswer.titleLabel?.text == correctAnswer {
+                    thirdAnswer.tintColor = UIColor.greenColor()
+                }else{
+                    if fourthAnswer.titleLabel?.text == correctAnswer {
+                        fourthAnswer.tintColor = UIColor.greenColor()
+                    }
+                }
+            }
+        }
+        
+        //loadNextRoundWithDelay(seconds: 2)
+        nextButton.hidden = false
     }
     
     func nextRound() {
         if questionsAsked == questionsPerRound {
+            // Configure nextButton
+            nextButton.setTitle("Play Again", forState: UIControlState.Normal)
             // Game is over
             displayScore()
+            // Repopulate questions array & reset game counters
+            trivia = TriviaModel().trivia
+            questionsAsked = 0
+            correctQuestions = 0
+            
         } else {
+            // Configure nextButton
+            if questionsAsked == questionsPerRound - 1 {
+                nextButton.setTitle("Finish Game", forState: UIControlState.Normal)
+            }else{
+                nextButton.setTitle("Next Question", forState: UIControlState.Normal)
+            }
+            // Remove question from array
+            trivia.removeAtIndex(indexOfSelectedQuestion)
             // Continue game
+            //Display white text in buttons
+            firstAswer.tintColor = UIColor.whiteColor()
+            secondAswer.tintColor = UIColor.whiteColor()
+            thirdAnswer.tintColor = UIColor.whiteColor()
+            fourthAnswer.tintColor = UIColor.whiteColor()
             displayQuestion()
         }
     }
     
-    @IBAction func playAgain() {
+    @IBAction func nextGameState() {
         // Show the answer buttons
         firstAswer.hidden = false
         secondAswer.hidden = false
-        
-        questionsAsked = 0
-        correctQuestions = 0
+   
         nextRound()
     }
     

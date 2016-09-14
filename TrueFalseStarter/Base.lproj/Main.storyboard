@@ -130,7 +130,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
                                 <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <state key="normal" title="Play Again"/>
+                                <state key="normal" title="Next Question"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="gfD-9u-bf4"/>
@@ -138,7 +138,7 @@
                                     </mask>
                                 </variation>
                                 <connections>
-                                    <action selector="playAgain" destination="BYZ-38-t0r" eventType="touchUpInside" id="klz-B2-JAN"/>
+                                    <action selector="nextGameState" destination="BYZ-38-t0r" eventType="touchUpInside" id="vb0-C0-206"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -185,6 +185,7 @@
                                 <exclude reference="TmX-fA-Kgo"/>
                                 <exclude reference="ezr-4d-toQ"/>
                                 <exclude reference="vh0-XV-edN"/>
+                                <exclude reference="s91-t2-XD5"/>
                                 <exclude reference="IH4-en-Isg"/>
                                 <exclude reference="MfB-Rd-tjt"/>
                                 <exclude reference="jM6-lc-7zM"/>
@@ -198,7 +199,7 @@
                     <connections>
                         <outlet property="firstAswer" destination="J1V-MS-ECi" id="wTs-bN-10z"/>
                         <outlet property="fourthAnswer" destination="bcB-Sl-hpg" id="fQ5-uu-HZ0"/>
-                        <outlet property="playAgainButton" destination="K17-uy-MvB" id="0Bx-Cm-ye0"/>
+                        <outlet property="nextButton" destination="K17-uy-MvB" id="bjS-Lo-hOU"/>
                         <outlet property="questionField" destination="I3V-ih-1Ky" id="7UI-o2-ATi"/>
                         <outlet property="secondAswer" destination="AS4-HX-g9f" id="faF-oS-kPq"/>
                         <outlet property="thirdAnswer" destination="C8r-XU-1D2" id="24q-NE-Xxi"/>
