@@ -18,9 +18,13 @@ class ViewController: UIViewController {
     var indexOfSelectedQuestion: Int = 0
     
     var gameSound: SystemSoundID = 0
+    var correctAnswerSound: SystemSoundID = 1
+    var wrongAnswerSound: SystemSoundID = 2
+    var gameFinishSound: SystemSoundID = 3
 
     
     var trivia = TriviaModel().trivia
+    
     
     
     @IBOutlet weak var questionField: UILabel!
@@ -28,19 +32,23 @@ class ViewController: UIViewController {
     @IBOutlet weak var secondAswer: UIButton!
     @IBOutlet weak var thirdAnswer: UIButton!
     @IBOutlet weak var fourthAnswer: UIButton!
-    @IBOutlet weak var nextButton: UIButton!
+    @IBOutlet weak var nextGameStateButton: UIButton!
+    @IBOutlet weak var questionResultLabel: UILabel!
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         loadGameStartSound()
+        loadCorrectAswerSound()
+        loadWrongAswerSound()
+        loadGameFinishSound()
         
         //Make buttons corners rounded
         firstAswer.layer.cornerRadius = 10
         secondAswer.layer.cornerRadius = 10
         thirdAnswer.layer.cornerRadius = 10
         fourthAnswer.layer.cornerRadius = 10
-        nextButton.layer.cornerRadius = 10
+        nextGameStateButton.layer.cornerRadius = 10
         
         // Start game
         playGameStartSound()
@@ -55,16 +63,16 @@ class ViewController: UIViewController {
     func displayQuestion() {
         indexOfSelectedQuestion = GKRandomSource.sharedRandom().nextIntWithUpperBound(trivia.count)
         let questionDictionary = trivia[indexOfSelectedQuestion]
-        questionField.text = questionDictionary["Question"]
-        nextButton.hidden = true
+        questionField.text = questionDictionary.question
+        nextGameStateButton.hidden = true
         
         //Displays Answer
-        if questionDictionary["Option1"] != nil && questionDictionary["Option2"] != nil {
+        if questionDictionary.option1 != nil && questionDictionary.option2 != nil {
             //Sey answers text
-            firstAswer.setTitle(questionDictionary["Option1"], forState: UIControlState.Normal)
-            secondAswer.setTitle(questionDictionary["Option2"], forState: UIControlState.Normal)
-            thirdAnswer.setTitle(questionDictionary["Option3"], forState: UIControlState.Normal)
-            fourthAnswer.setTitle(questionDictionary["Option4"], forState: UIControlState.Normal)
+            firstAswer.setTitle(questionDictionary.option1, forState: UIControlState.Normal)
+            secondAswer.setTitle(questionDictionary.option2, forState: UIControlState.Normal)
+            thirdAnswer.setTitle(questionDictionary.option3, forState: UIControlState.Normal)
+            fourthAnswer.setTitle(questionDictionary.option4, forState: UIControlState.Normal)
             
             //Show hidden buttons
             thirdAnswer.hidden = false
@@ -89,7 +97,7 @@ class ViewController: UIViewController {
         fourthAnswer.hidden = true
         
         // Display play again button
-        nextButton.hidden = false
+        nextGameStateButton.hidden = false
         
         questionField.text = "Way to go!\nYou got \(correctQuestions) out of \(questionsPerRound) correct!"
         
@@ -100,13 +108,19 @@ class ViewController: UIViewController {
         questionsAsked += 1
         
         let selectedQuestionDict = trivia[indexOfSelectedQuestion]
-        let correctAnswer = selectedQuestionDict["Answer"]
+        let correctAnswer = selectedQuestionDict.answer
         
         if (sender.titleLabel?.text == correctAnswer) {
             correctQuestions += 1
-            questionField.text = "Correct!"
+            questionResultLabel.text = "Correct!"
+            questionResultLabel.textColor = UIColor.greenColor()
+            questionResultLabel.hidden = false
+            playCorrectAnswerSound()
         } else {
-            questionField.text = "Sorry, wrong answer!"
+            questionResultLabel.text = "Sorry, that´s not it."
+            questionResultLabel.textColor = UIColor.orangeColor()
+            questionResultLabel.hidden = false
+            playWrongAswerSound()
         }
         
         
@@ -133,15 +147,16 @@ class ViewController: UIViewController {
         }
         
         //loadNextRoundWithDelay(seconds: 2)
-        nextButton.hidden = false
+        nextGameStateButton.hidden = false
     }
     
     func nextRound() {
         if questionsAsked == questionsPerRound {
             // Configure nextButton
-            nextButton.setTitle("Play Again", forState: UIControlState.Normal)
+            nextGameStateButton.setTitle("Play Again", forState: UIControlState.Normal)
             // Game is over
             displayScore()
+            playGameFinishSound()
             // Repopulate questions array & reset game counters
             trivia = TriviaModel().trivia
             questionsAsked = 0
@@ -150,9 +165,9 @@ class ViewController: UIViewController {
         } else {
             // Configure nextButton
             if questionsAsked == questionsPerRound - 1 {
-                nextButton.setTitle("Finish Game", forState: UIControlState.Normal)
+                nextGameStateButton.setTitle("Finish Game", forState: UIControlState.Normal)
             }else{
-                nextButton.setTitle("Next Question", forState: UIControlState.Normal)
+                nextGameStateButton.setTitle("Next Question", forState: UIControlState.Normal)
             }
             // Remove question from array
             trivia.removeAtIndex(indexOfSelectedQuestion)
@@ -170,6 +185,7 @@ class ViewController: UIViewController {
         // Show the answer buttons
         firstAswer.hidden = false
         secondAswer.hidden = false
+        questionResultLabel.hidden = true
    
         nextRound()
     }
@@ -199,5 +215,41 @@ class ViewController: UIViewController {
     func playGameStartSound() {
         AudioServicesPlaySystemSound(gameSound)
     }
+    
+    func loadGameFinishSound() {
+        let pathToSoundFile = NSBundle.mainBundle().pathForResource("GameFinished", ofType: "wav")
+        let soundURL = NSURL(fileURLWithPath: pathToSoundFile!)
+        AudioServicesCreateSystemSoundID(soundURL, &gameFinishSound)
+    }
+    
+    func playGameFinishSound() {
+        AudioServicesPlaySystemSound(gameFinishSound)
+    }
+    
+    func loadCorrectAswerSound() {
+        let pathToSoundFile = NSBundle.mainBundle().pathForResource("CorrectAnswer", ofType: "wav")
+        let soundURL = NSURL(fileURLWithPath: pathToSoundFile!)
+        AudioServicesCreateSystemSoundID(soundURL, &correctAnswerSound)
+    }
+    
+    func playCorrectAnswerSound() {
+        AudioServicesPlaySystemSound(correctAnswerSound)
+    }
+
+    
+    func loadWrongAswerSound() {
+        let pathToSoundFile = NSBundle.mainBundle().pathForResource("WrongAswer", ofType: "wav")
+        let soundURL = NSURL(fileURLWithPath: pathToSoundFile!)
+        AudioServicesCreateSystemSoundID(soundURL, &wrongAnswerSound)
+    }
+    
+    func playWrongAswerSound() {
+        AudioServicesPlaySystemSound(wrongAnswerSound)
+    }
+
+    
+    
+    
+    
 }
 
