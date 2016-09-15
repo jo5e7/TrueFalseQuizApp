@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		755B03251D8A767100C42B29 /* QuizTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755B03241D8A767100C42B29 /* QuizTypeController.swift */; };
+		755B03271D8A833A00C42B29 /* QuizTypeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 755B03261D8A833A00C42B29 /* QuizTypeController.swift */; };
 		758D3E7E1D8632FC00059A8E /* TriviaModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758D3E7D1D8632FC00059A8E /* TriviaModel.swift */; };
 		75ABF8651D8927D100E753ED /* WrongAswer.wav in Resources */ = {isa = PBXBuildFile; fileRef = 75ABF8621D8927D100E753ED /* WrongAswer.wav */; };
 		75ABF8691D8929D900E753ED /* CorrectAnswer.wav in Resources */ = {isa = PBXBuildFile; fileRef = 75ABF8681D8929D900E753ED /* CorrectAnswer.wav */; };
@@ -21,12 +21,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		755B03241D8A767100C42B29 /* QuizTypeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = QuizTypeController.swift; path = ../QuizTypeController.swift; sourceTree = "<group>"; };
+		755B03261D8A833A00C42B29 /* QuizTypeController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuizTypeController.swift; sourceTree = "<group>"; };
 		758D3E7D1D8632FC00059A8E /* TriviaModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TriviaModel.swift; sourceTree = "<group>"; };
 		75ABF8621D8927D100E753ED /* WrongAswer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = WrongAswer.wav; sourceTree = "<group>"; };
 		75ABF8681D8929D900E753ED /* CorrectAnswer.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = CorrectAnswer.wav; sourceTree = "<group>"; };
 		75ABF86A1D892A1300E753ED /* GameFinished.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = GameFinished.wav; sourceTree = "<group>"; };
-		97093D381C913506001275BC /* TrueFalseQuizApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TrueFalseQuizApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		97093D381C913506001275BC /* QuizApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuizApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		97093D3B1C913506001275BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		97093D3D1C913506001275BC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		97093D401C913506001275BC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -50,7 +50,7 @@
 		97093D2F1C913506001275BC = {
 			isa = PBXGroup;
 			children = (
-				97093D3A1C913506001275BC /* TrueFalseStarter */,
+				97093D3A1C913506001275BC /* QuizApp */,
 				97093D391C913506001275BC /* Products */,
 			);
 			sourceTree = "<group>";
@@ -58,16 +58,16 @@
 		97093D391C913506001275BC /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				97093D381C913506001275BC /* TrueFalseQuizApp.app */,
+				97093D381C913506001275BC /* QuizApp.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		97093D3A1C913506001275BC /* TrueFalseStarter */ = {
+		97093D3A1C913506001275BC /* QuizApp */ = {
 			isa = PBXGroup;
 			children = (
 				97093D3B1C913506001275BC /* AppDelegate.swift */,
-				755B03241D8A767100C42B29 /* QuizTypeController.swift */,
+				755B03261D8A833A00C42B29 /* QuizTypeController.swift */,
 				97093D3D1C913506001275BC /* ViewController.swift */,
 				758D3E7D1D8632FC00059A8E /* TriviaModel.swift */,
 				97093D3F1C913506001275BC /* Main.storyboard */,
@@ -79,15 +79,16 @@
 				75ABF8621D8927D100E753ED /* WrongAswer.wav */,
 				75ABF86A1D892A1300E753ED /* GameFinished.wav */,
 			);
+			name = QuizApp;
 			path = TrueFalseStarter;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		97093D371C913506001275BC /* TrueFalseQuizApp */ = {
+		97093D371C913506001275BC /* QuizApp */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 97093D4A1C913506001275BC /* Build configuration list for PBXNativeTarget "TrueFalseQuizApp" */;
+			buildConfigurationList = 97093D4A1C913506001275BC /* Build configuration list for PBXNativeTarget "QuizApp" */;
 			buildPhases = (
 				97093D341C913506001275BC /* Sources */,
 				97093D351C913506001275BC /* Frameworks */,
@@ -97,9 +98,9 @@
 			);
 			dependencies = (
 			);
-			name = TrueFalseQuizApp;
+			name = QuizApp;
 			productName = TrueFalseStarter;
-			productReference = 97093D381C913506001275BC /* TrueFalseQuizApp.app */;
+			productReference = 97093D381C913506001275BC /* QuizApp.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -118,7 +119,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 97093D331C913506001275BC /* Build configuration list for PBXProject "TrueFalseQuizApp" */;
+			buildConfigurationList = 97093D331C913506001275BC /* Build configuration list for PBXProject "QuizApp" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -131,7 +132,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				97093D371C913506001275BC /* TrueFalseQuizApp */,
+				97093D371C913506001275BC /* QuizApp */,
 			);
 		};
 /* End PBXProject section */
@@ -160,7 +161,7 @@
 			files = (
 				758D3E7E1D8632FC00059A8E /* TriviaModel.swift in Sources */,
 				97093D3E1C913506001275BC /* ViewController.swift in Sources */,
-				755B03251D8A767100C42B29 /* QuizTypeController.swift in Sources */,
+				755B03271D8A833A00C42B29 /* QuizTypeController.swift in Sources */,
 				97093D3C1C913506001275BC /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -277,7 +278,7 @@
 				INFOPLIST_FILE = TrueFalseStarter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.teamtreehouse.TrueFalseStarter;
-				PRODUCT_NAME = TrueFalseQuizApp;
+				PRODUCT_NAME = QuizApp;
 				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
@@ -289,7 +290,7 @@
 				INFOPLIST_FILE = TrueFalseStarter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.teamtreehouse.TrueFalseStarter;
-				PRODUCT_NAME = TrueFalseQuizApp;
+				PRODUCT_NAME = QuizApp;
 				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
@@ -297,7 +298,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		97093D331C913506001275BC /* Build configuration list for PBXProject "TrueFalseQuizApp" */ = {
+		97093D331C913506001275BC /* Build configuration list for PBXProject "QuizApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				97093D481C913506001275BC /* Debug */,
@@ -306,7 +307,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		97093D4A1C913506001275BC /* Build configuration list for PBXNativeTarget "TrueFalseQuizApp" */ = {
+		97093D4A1C913506001275BC /* Build configuration list for PBXNativeTarget "QuizApp" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				97093D4B1C913506001275BC /* Debug */,
