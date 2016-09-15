@@ -51,7 +51,7 @@ struct TriviaModel{
     init(gameWithArithmeticQuestions:Bool) {
         
         if gameWithArithmeticQuestions == true {
-            for _ in 0...20 {
+            for _ in 1...14 {
                 let aritfmeticQuestion = createArithmeticQuestions()
                 
                 trivia.append(aritfmeticQuestion)
@@ -89,6 +89,7 @@ func createArithmeticQuestions() -> Question {
     
     var arithmeticQuesiton = Question(question: question, answer: "\(answer)", option1: nil, option2: nil, option3: nil, option4: nil)
     
+    //Create random answers
     arithmeticQuesiton = addRandomAswers(arithmeticQuesiton)
     
     
@@ -118,12 +119,13 @@ func addRandomAswers(question:Question) -> Question {
     //add 4 answers
     for question in 1...4 {
         
-        let answer = "\(GKRandomSource.sharedRandom().nextIntWithUpperBound(401))"
+        
         var answerIsOk = false
         
         // Avoid repeated answers
         while answerIsOk == false {
            
+            let answer = "\(GKRandomSource.sharedRandom().nextIntWithUpperBound(401))"
             if (answer != returnQuestion.answer) && (answer != returnQuestion.option1) && (answer != returnQuestion.option2) && (answer != returnQuestion.option3) && (answer != returnQuestion.option4) {
                 
                 switch question {

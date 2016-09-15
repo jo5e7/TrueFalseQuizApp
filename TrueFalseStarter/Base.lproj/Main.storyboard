@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11201" systemVersion="15G1004" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="ptY-5Y-1Gy">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11161"/>
@@ -8,6 +8,87 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Quiz Type Controller-->
+        <scene sceneID="bn5-V3-PP7">
+            <objects>
+                <viewController id="1HG-zi-gFG" customClass="QuizTypeController" customModule="TrueFalseQuizApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qSl-aL-hIK"/>
+                        <viewControllerLayoutGuide type="bottom" id="U1s-fv-vIA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kbs-V0-X4n">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vvb-JC-YzS">
+                                <color key="backgroundColor" red="0.047058823530000002" green="0.47450980390000003" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="36S-ZS-YTI"/>
+                                    <constraint firstAttribute="width" secondItem="Vvb-JC-YzS" secondAttribute="height" multiplier="6:1" id="rk8-9H-2RS"/>
+                                    <constraint firstAttribute="height" constant="50" id="rq8-gQ-5Wi"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Non Arithmetic Questions"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="36S-ZS-YTI"/>
+                                        <exclude reference="rq8-gQ-5Wi"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="NonArithmeticType" id="TMw-DQ-mbD"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eG6-Fb-4uR">
+                                <color key="backgroundColor" red="0.047058823530000002" green="0.47450980390000003" blue="0.58823529409999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="eG6-Fb-4uR" secondAttribute="height" multiplier="6:1" id="1ap-tz-nRC"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="Dun-4j-uGh"/>
+                                    <constraint firstAttribute="height" constant="50" id="JM1-6S-5hy"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Arithmetic Questions"/>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="JM1-6S-5hy"/>
+                                        <exclude reference="Dun-4j-uGh"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="ArithmeticType" id="Ws5-MA-4cU"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How do you want to play?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EbX-Ff-LLa">
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.031372549020000001" green="0.16862745100000001" blue="0.24313725489999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="Vvb-JC-YzS" secondAttribute="trailing" constant="18" id="4Wf-JS-4Nd"/>
+                            <constraint firstItem="EbX-Ff-LLa" firstAttribute="leading" secondItem="kbs-V0-X4n" secondAttribute="leadingMargin" id="4lP-FO-alQ"/>
+                            <constraint firstItem="Vvb-JC-YzS" firstAttribute="top" secondItem="eG6-Fb-4uR" secondAttribute="bottom" constant="31" id="Kmh-Bv-RcZ"/>
+                            <constraint firstItem="eG6-Fb-4uR" firstAttribute="leading" secondItem="kbs-V0-X4n" secondAttribute="leadingMargin" constant="17" id="Og4-Iw-HWr"/>
+                            <constraint firstItem="EbX-Ff-LLa" firstAttribute="trailing" secondItem="kbs-V0-X4n" secondAttribute="trailingMargin" id="Prg-db-ill"/>
+                            <constraint firstItem="eG6-Fb-4uR" firstAttribute="centerY" secondItem="kbs-V0-X4n" secondAttribute="centerY" constant="-26" id="WyD-6T-qXe"/>
+                            <constraint firstItem="Vvb-JC-YzS" firstAttribute="leading" secondItem="kbs-V0-X4n" secondAttribute="leadingMargin" constant="17" id="bYH-7O-Zki"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="eG6-Fb-4uR" secondAttribute="trailing" constant="18" id="nfb-1R-8go"/>
+                            <constraint firstItem="EbX-Ff-LLa" firstAttribute="top" secondItem="qSl-aL-hIK" secondAttribute="bottom" constant="25" id="w7o-Tj-p7h"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="gMj-Td-sMG"/>
+                    <connections>
+                        <outlet property="arithmeticQuestions" destination="eG6-Fb-4uR" id="vYb-CM-kYK"/>
+                        <outlet property="nonArithmetichQuestions" destination="Vvb-JC-YzS" id="cnT-Le-idW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dCv-jk-aUP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="292" y="101.19940029985008"/>
+        </scene>
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -17,7 +98,7 @@
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AS4-HX-g9f">
@@ -29,7 +110,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="False"/>
+                                <state key="normal" title="Answer"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="7SZ-iO-rRe"/>
@@ -49,7 +130,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="False"/>
+                                <state key="normal" title="Answer"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="6Is-x0-VDH"/>
@@ -70,7 +151,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="False"/>
+                                <state key="normal" title="Answer"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="3pM-fw-2dO"/>
@@ -105,7 +186,7 @@
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <state key="normal" title="True"/>
+                                <state key="normal" title="Answer"/>
                                 <variation key="default">
                                     <mask key="constraints">
                                         <exclude reference="Iiv-BS-c5z"/>
@@ -182,16 +263,16 @@
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="aTV-ic-Ihw"/>
-                                <exclude reference="iKI-z9-9ax"/>
                                 <exclude reference="S0q-yY-XpB"/>
                                 <exclude reference="TmX-fA-Kgo"/>
                                 <exclude reference="ezr-4d-toQ"/>
                                 <exclude reference="vh0-XV-edN"/>
-                                <exclude reference="s91-t2-XD5"/>
+                                <exclude reference="aTV-ic-Ihw"/>
+                                <exclude reference="iKI-z9-9ax"/>
                                 <exclude reference="IH4-en-Isg"/>
                                 <exclude reference="MfB-Rd-tjt"/>
                                 <exclude reference="jM6-lc-7zM"/>
+                                <exclude reference="s91-t2-XD5"/>
                                 <exclude reference="OSw-yd-Mgx"/>
                                 <exclude reference="UbP-Av-UDs"/>
                             </mask>
@@ -210,7 +291,28 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="116.25" y="102.46478873239437"/>
+            <point key="canvasLocation" x="1055.2" y="102.09895052473765"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="H3K-AP-dwu">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" navigationBarHidden="YES" id="ptY-5Y-1Gy" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="k5V-G7-kQG">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="1HG-zi-gFG" kind="relationship" relationship="rootViewController" id="i0x-Y9-Tx0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YlF-VN-Uow" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-647.20000000000005" y="101.19940029985008"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="TMw-DQ-mbD"/>
+    </inferredMetricsTieBreakers>
 </document>

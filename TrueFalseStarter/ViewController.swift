@@ -22,9 +22,8 @@ class ViewController: UIViewController {
     var wrongAnswerSound: SystemSoundID = 2
     var gameFinishSound: SystemSoundID = 3
 
-    
-    var trivia = TriviaModel(gameWithArithmeticQuestions: true).trivia
-    
+    var gameType = false
+    var trivia = TriviaModel(gameWithArithmeticQuestions: false).trivia
     
     @IBOutlet weak var questionField: UILabel!
     @IBOutlet weak var firstAswer: UIButton!
@@ -52,6 +51,10 @@ class ViewController: UIViewController {
         // Start game
         playGameStartSound()
         displayQuestion()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -145,11 +148,12 @@ class ViewController: UIViewController {
             }
         }
         
-        //loadNextRoundWithDelay(seconds: 2)
+        deActivateButtonsUserInteracion()
         nextGameStateButton.hidden = false
     }
     
     func nextRound() {
+        activateButtonsUserInteracion()
         if questionsAsked == questionsPerRound {
             // Configure nextButton
             nextGameStateButton.setTitle("Play Again", forState: UIControlState.Normal)
@@ -157,7 +161,7 @@ class ViewController: UIViewController {
             displayScore()
             playGameFinishSound()
             // Repopulate questions array & reset game counters
-            trivia = TriviaModel(gameWithArithmeticQuestions: false).trivia
+            trivia = TriviaModel(gameWithArithmeticQuestions: gameType).trivia
             questionsAsked = 0
             correctQuestions = 0
             
@@ -192,6 +196,24 @@ class ViewController: UIViewController {
 
     
     // MARK: Helper Methods
+    
+    //Methods used to avoid recheck answers
+    func activateButtonsUserInteracion() {
+        
+        firstAswer.userInteractionEnabled = true
+        secondAswer.userInteractionEnabled = true
+        thirdAnswer.userInteractionEnabled = true
+        fourthAnswer.userInteractionEnabled = true
+    }
+    
+    func deActivateButtonsUserInteracion() {
+        
+        firstAswer.userInteractionEnabled = false
+        secondAswer.userInteractionEnabled = false
+        thirdAnswer.userInteractionEnabled = false
+        fourthAnswer.userInteractionEnabled = false
+    }
+    
     
     func loadNextRoundWithDelay(seconds seconds: Int) {
         // Converts a delay in seconds to nanoseconds as signed 64 bit integer
