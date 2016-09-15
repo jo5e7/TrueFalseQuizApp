@@ -7,19 +7,11 @@
 //
 
 
+import GameKit
+
 struct TriviaModel{
     
-    struct Question {
-        
-        var question: String
-        var answer: String
-        var option1: String?
-        var option2: String?
-        var option3: String?
-        var option4: String?
-        
-    }
-
+    
 
     // Simple questions
     let s1 = Question(question: "Only female koalas can whistle", answer: "False", option1: nil, option2: nil, option3: nil, option4: nil)
@@ -48,30 +40,115 @@ struct TriviaModel{
                        option1: "Poland", option2: "United States", option3: "Sweden", option4: "Senegal")
     let mc10 = Question(question: "Which of these countries won the most medals in the 2012 Summer Games?", answer: "Great Britian",
                         option1: "France", option2: "Germany", option3: "Japan", option4: "Great Britian")
-
-    let trivia :[Question]
     
-    init() {
-        trivia = [s1, s2, s3, s4, mc1, mc2, mc3, mc4, mc5, mc6, mc7, mc8, mc9, mc10]
+    
+    ///////////////////////////////
+    
+
+    var trivia :[Question] = []
+    
+    
+    init(gameWithArithmeticQuestions:Bool) {
+        
+        if gameWithArithmeticQuestions == true {
+            for _ in 0...20 {
+                let aritfmeticQuestion = createArithmeticQuestions()
+                
+                trivia.append(aritfmeticQuestion)
+            }
+            
+        }else{
+            trivia = [s1, s2, s3, s4, mc1, mc2, mc3, mc4, mc5, mc6, mc7, mc8, mc9, mc10]
+        }
+        
     }
     
-//    let trivia: [[String:String]] = [//Yes or Not questions
-//                                    ["Question": "Only female koalas can whistle", "Answer": "False"],
-//                                   ["Question": "Blue whales are technically whales", "Answer": "True"],
-//                                   ["Question": "Camels are cannibalistic", "Answer": "False"],
-//                                   ["Question": "All ducks are birds", "Answer": "True"],
-//                                   //Multiple choice questions
-//                                    ["Question": "This was the only US President to serve more than two consecutive terms." , "Answer": "Franklin D. Roosevelt", "Option1": "George Washington", "Option2": "Franklin D. Roosevelt", "Option3": "Woodrow Wilson", "Option4": "Andrew Jackson"],
-//                                    ["Question": "Which of the following countries has the most residents?" , "Answer": "Nigeria", "Option1": "Nigeria", "Option2": "Russia", "Option3": "Iran", "Option4": "Vietnam"],
-//                                    ["Question": "In what year was the United Nations founded?" , "Answer": "1945", "Option1": "1918", "Option2": "1919", "Option3": "1945", "Option4": "1954"],
-//                                    ["Question": "The Titanic departed from the United Kingdom, where was it supposed to arrive?" , "Answer": "New York City", "Option1": "Paris", "Option2": "Washington D.C.", "Option3": "New York City", "Option4": "Boston"],
-//                                    ["Question": "Which nation produces the most oil?" , "Answer": "Canada", "Option1": "Iran", "Option2": "Iraq", "Option3": "Brazil", "Option4": "Canada"],
-//                                    ["Question": "Which country has most recently won consecutive World Cups in Soccer?" , "Answer": "Brazil", "Option1": "Italy", "Option2": "Brazil", "Option3": "Argetina", "Option4": "Spain"],
-//                                    ["Question": "Which of the following rivers is longest?" , "Answer": "Mississippi", "Option1": "Yangtze", "Option2": "Mississippi", "Option3": "Congo", "Option4": "Mekong"],
-//                                    ["Question": "Which city is the oldest?" , "Answer": "Mexico City", "Option1": "Mexico City", "Option2": "Cape Town", "Option3": "San Juan", "Option4": "Sydney"],
-//                                    ["Question": "Which country was the first to allow women to vote in national elections?" , "Answer": "Poland", "Option1": "Poland", "Option2": "United States", "Option3": "Sweden", "Option4": "Senegal"],
-//                                    ["Question": "Which of these countries won the most medals in the 2012 Summer Games?" , "Answer": "Great Britian", "Option1": "France", "Option2": "Germany", "Option3": "Japan", "Option4": "Great Britian"]
-//    ]
+
     
 }
+
+struct Question {
+    
+    var question: String
+    var answer: String
+    var option1: String?
+    var option2: String?
+    var option3: String?
+    var option4: String?
+    
+}
+
+
+func createArithmeticQuestions() -> Question {
+    
+    let a = GKRandomSource.sharedRandom().nextIntWithUpperBound(21)
+    let b = GKRandomSource.sharedRandom().nextIntWithUpperBound(21)
+    
+    let question = "\(a) * \(b)"
+    let answer = a * b
+    
+    var arithmeticQuesiton = Question(question: question, answer: "\(answer)", option1: nil, option2: nil, option3: nil, option4: nil)
+    
+    arithmeticQuesiton = addRandomAswers(arithmeticQuesiton)
+    
+    
+    //Add correct answer
+    let correctAswerPosition = GKRandomSource.sharedRandom().nextIntWithUpperBound(4)
+    
+    switch correctAswerPosition {
+    case 0:
+        arithmeticQuesiton.option1 = "\(answer)"
+    case 1:
+        arithmeticQuesiton.option2 = "\(answer)"
+    case 2:
+        arithmeticQuesiton.option3 = "\(answer)"
+    case 3:
+        arithmeticQuesiton.option4 = "\(answer)"
+    default:
+        arithmeticQuesiton.option3 = "\(answer)"
+    }
+    
+    return arithmeticQuesiton
+    
+}
+
+func addRandomAswers(question:Question) -> Question {
+    
+    var returnQuestion = question
+    //add 4 answers
+    for question in 1...4 {
+        
+        let answer = "\(GKRandomSource.sharedRandom().nextIntWithUpperBound(401))"
+        var answerIsOk = false
+        
+        // Avoid repeated answers
+        while answerIsOk == false {
+           
+            if (answer != returnQuestion.answer) && (answer != returnQuestion.option1) && (answer != returnQuestion.option2) && (answer != returnQuestion.option3) && (answer != returnQuestion.option4) {
+                
+                switch question {
+                case 1:
+                    returnQuestion.option1 = answer
+                    answerIsOk = true
+                case 2:
+                    returnQuestion.option2 = answer
+                    answerIsOk = true
+                case 3:
+                    returnQuestion.option3 = answer
+                    answerIsOk = true
+                case 4:
+                    returnQuestion.option4 = answer
+                    answerIsOk = true
+                default: break
+                    
+                }
+            }
+            
+        }
+        
+    }
+    
+        return returnQuestion
+}
+
 

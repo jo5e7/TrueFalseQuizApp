@@ -23,8 +23,7 @@ class ViewController: UIViewController {
     var gameFinishSound: SystemSoundID = 3
 
     
-    var trivia = TriviaModel().trivia
-    
+    var trivia = TriviaModel(gameWithArithmeticQuestions: true).trivia
     
     
     @IBOutlet weak var questionField: UILabel!
@@ -67,7 +66,7 @@ class ViewController: UIViewController {
         nextGameStateButton.hidden = true
         
         //Displays Answer
-        if questionDictionary.option1 != nil && questionDictionary.option2 != nil {
+        if questionDictionary.option1 != nil {
             //Sey answers text
             firstAswer.setTitle(questionDictionary.option1, forState: UIControlState.Normal)
             secondAswer.setTitle(questionDictionary.option2, forState: UIControlState.Normal)
@@ -158,7 +157,7 @@ class ViewController: UIViewController {
             displayScore()
             playGameFinishSound()
             // Repopulate questions array & reset game counters
-            trivia = TriviaModel().trivia
+            trivia = TriviaModel(gameWithArithmeticQuestions: false).trivia
             questionsAsked = 0
             correctQuestions = 0
             
